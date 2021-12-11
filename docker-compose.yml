@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  dogs_server:
+    container_name: dogs_server
+    build: ./src/dogs_server
+    restart: always
+    networks:
+      - dogs
+    ports:
+      - "55666:55666"
+    volumes:
+      - ./src/dogs_server:/app
+  dogs_mongo:
+    image: mongo
+    restart: always
+    networks:
+      - dogs
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+  dogs_client:
+    container_name: dogs_client
+    build: ./src/dogs_client
+    restart: always
+    networks:
+      - dogs
+    ports:
+      - "55777:55777"
+    volumes:
+      - ./src/dogs_client:/app
+networks:
+  dogs:
+volumes:
+  mongodb:
