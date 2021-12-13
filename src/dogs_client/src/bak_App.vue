@@ -1,19 +1,13 @@
-<body>
 <template>
-  <HelloWorld />
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js Appaa"/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-/*
-import HelloWorld from './components/Landing.vue'
 import axios from 'axios'
+//import Web3 from 'web3'
+import { ethers } from "ethers"
 
 export default {
   name: 'App',
@@ -54,10 +48,15 @@ export default {
     
   }
 }
-*/
 </script>
 
 <style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
-
-</body>
