@@ -11,12 +11,9 @@ RUN apt-get install nodejs
 RUN node --version
 RUN npm --version
 
-WORKDIR /app
-
 RUN npm install -g @vue/cli
-COPY package.json .
-RUN npm install
 
+WORKDIR /app
 
 ENV NODE_ENV development
 CMD ["npm", "run", "serve", "--", "--port", "55777"]

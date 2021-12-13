@@ -2,6 +2,7 @@ version: "3.8"
 services:
   dogs_server:
     container_name: dogs_server
+    hostname: dogs_server
     build: ./src/dogs_server
     restart: always
     networks:
@@ -9,9 +10,12 @@ services:
     ports:
       - "55666:55666"
     volumes:
-      - ./src/dogs_server:/app
+      - ./src/dogs_server:/app:cached
+    environment:
+      - CHOKIDAR_USEPOLLING=true
   dogs_mongo:
     image: mongo
+    hostname: dogs_mongo
     restart: always
     networks:
       - dogs
@@ -21,6 +25,7 @@ services:
       - mongodb:/data/db
   dogs_client:
     container_name: dogs_client
+    hostname: dogs_client
     build: ./src/dogs_client
     restart: always
     networks:
@@ -28,7 +33,10 @@ services:
     ports:
       - "55777:55777"
     volumes:
-      - ./src/dogs_client:/app
+      - ./src/dogs_client:/app:cached
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
 networks:
   dogs:
 volumes:
